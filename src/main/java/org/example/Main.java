@@ -55,7 +55,7 @@ public class Main {
             System.out.println();
         }
 
-        methodArrs(8,3);
+        methodArrs(8,3); // 14 задание
     }
 
     public static void printThreeWords() {
