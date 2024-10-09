@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args)
     {
-        employee employee = new employee(); // 1 задание
-        employee.info(); // 1 задание
+        employee1 employee1 = new employee1(); // 1 задание
+        employee1.info(); // 1 задание
 
         // задание 2
         sotrydnik[] persArray = new sotrydnik[5];
