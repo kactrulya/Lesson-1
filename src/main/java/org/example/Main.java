@@ -3,25 +3,53 @@ package org.example;
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args)
-    {
-        Employee Employee = new Employee(); // 1 задание
-        Employee.info(); // 1 задание
+    public static void main(String[] args) {
+        Cat cat = new Cat("Барсик");
+        Dog dog = new Dog("Бобик");
+        Dog dog2 = new Dog("Дарлинг");
+        Dog dog3 = new Dog("Альфа");
+        Dog dog4 = new Dog("Дейзи");
+        cat.someinfo();
+        cat.runinfo(201);
+        dog.runinfo(500);
+        cat.someinfo();
+        dog.someinfo();
+        dog.swiminfo(10);
+        cat.swiminfo(11);
+        System.out.println("Всего создано животных: " + Animal.animalCount);
+
+        // 2 часть 1 задачи
+        Miska miska = new Miska(20);
+        Cat[] cats = new Cat[5];
+        cats[0] = new Cat("Персей");
+        cats[1] = new Cat("Мурзик");
+        cats[2] = new Cat("Цезарь");
+        cats[3] = new Cat("Пушок");
+        cats[4] = new Cat("Рыжик");
+
+        for (int i = 0; i < cats.length; i++) {
+            cats[i].eat(miska, 10);
+        }
+
+        for (int i = 0; i < cats.length; i++) {
+            String isFullText = cats[i].isFull() ? "сыт" : "голоден";
+            System.out.println(cats[i].name + " " + isFullText);
+        }
+
+        miska.printFood();
 
         // задание 2
-        Sotrydnik[] persArray = new Sotrydnik[5];
-        persArray[0] = new Sotrydnik("Пушкарёв Никита", "qa", "пажпаж@gf;g;fg", "99548549043", "50000 белли", 24);
-        persArray[1] = new Sotrydnik("Иванов Никита", "Front", "jgjgjgj@gmail", "995545239043", "7045400 белли", 34);
-        persArray[2] = new Sotrydnik("Иванов Роман", "юрист", "linkinpark@gmail", "995545239043", "32045400 белли", 34);
-        persArray[3] = new Sotrydnik("Баранов Петя", "админ", "jjin@gmail", "995545239043", "4345 белли", 31);
-        persArray[4] = new Sotrydnik("Иванов Никита", "стажер", "j435пкj@gmail", "995545239043", "11231200 белли", 18);
-        System.out.println();
-        persArray[4].info(); //если нужно вывести информацию о сотруднике
-        System.out.println(); // разделение строк
-        persArray[4].info(); //если нужно вывести информацию о сотруднике
+        Circle circle = new Circle(5, "Red", "Black");
+        Rectangle rectangle = new Rectangle(4, 7, "Blue", "Green");
+        Triangle triangle = new Triangle(3, 4, 5, "Yellow", "Brown");
 
-        // Задание 3
-        Park.Attractionion gof = new Park.Attractionion("карусель", "11-00 22-00", 357);
+        System.out.println("Информация о круге:");
+        circle.printinfo();
 
+        System.out.println("Информация о прямоугольнике:");
+        rectangle.printinfo();
+
+        System.out.println("Информация о треугольнике:");
+        triangle.printinfo();
     }
 }
