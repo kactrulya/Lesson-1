@@ -1,49 +1,40 @@
 package org.example;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String[][] array = {
-                {"1", "2", "3", "4"},
-                {"5", "6", "7", "8"},
-                {"9", "10", "3", "12"},
-                {"13", "14", "15", "16"}
+
+        String[] dictionary = {
+                "Огонь", "Вода", "Воздух", "Земля", "Лед",
+                "Молния", "Огонь", "Молния", "Воздух", "Земля",
+                "Вода", "Лед", "Огонь", "Земля", "Воздух",
+                "Вода", "Огонь", "Земля", "Воздух", "Лед"
         };
 
-        try {
-            int sum = checkArraySize(array);
-            System.out.println("Сумма всех элементов массива: " + sum);
-        } catch (MyArraySizeException | MyArrayDataException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+        Set<String> uniqueWords = new HashSet<>(Arrays.asList(dictionary));
+        System.out.println("Список уникальных слов: " + uniqueWords);
 
-    public static int checkArraySize(String[][] array) throws MyArraySizeException, MyArrayDataException  {
-            if (array.length != 4) {
-                throw new MyArraySizeException("Массив должен быть размером 4x4!");
-            }
-
-            for (String[] row : array) {
-                if (row.length != 4) {
-                    throw new MyArraySizeException("Массив должен быть размером 4x4!");
-                }
-            }
-
-            int sum = 0;
-            for (int i = 0; i < array.length; i++) {
-                for (int j = 0; j < array[i].length; j++) {
-                    try {
-
-                        sum += Integer.parseInt(array[i][j]);
-                    } catch (NumberFormatException e) {
-
-                        throw new MyArrayDataException("Ошибка данных в ячейке [" + i + "][" + j + "]: \"" + array[i][j] + "\" не является числом.");
-                    }
-                }
-            }
-            return sum;
-
+        Map<String, Integer> wordCount = new HashMap<>();
+        for (String word : dictionary) {
+            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
         }
 
+
+        for (Map.Entry<String, Integer> entry : wordCount.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        PhoneBook phoneBook = new PhoneBook();
+
+        // Добавляем записи
+        phoneBook.add("Ivanov", "+7(961)123-45-67");
+        phoneBook.add("Petrov", "7(961)234-56-78");
+        phoneBook.add("Ivanov", "7(961)345-67-89");
+
+        // Получаем номера по фамилии
+        System.out.println("Ivanov's numbers: " + phoneBook.get("Ivanov"));
+        System.out.println("Petrov's number: " + phoneBook.get("Petrov"));
+        System.out.println("Sidorov's number: " + phoneBook.get("Sidorov"));
     }
+}
