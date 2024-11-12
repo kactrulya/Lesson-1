@@ -53,7 +53,7 @@ public class HomePage {
     }
 
     public void clickAcceptButton() {
-        driver.findElement(By.xpath("/html/body/div[6]/main/div/div[4]/div[1]/div/div/div[2]/section/div/div[1]/div[2]/form[1]/button")).click();
+        driver.findElement(By.className("button")).click();
     }
 
     public void selectPhone() {
@@ -106,19 +106,51 @@ public class HomePage {
         return driver.findElement(By.id("score-arrears")).getAttribute("placeholder");
     }
 
+    //проверка счета 297.00BYN
     public String getHeaderText() {
-        return driver.findElement(By.className("ng-tns-c46-1")).getText();
+        return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/div/div[1]/span[1]")).getText();
 
     }
 
+    //номер карты
+    public String getHeaderCardText() {
+        return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[1]/label")).getText();
+
+    }
+
+    //срок действия
+    public String getValidityPeriodText() {
+        return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[2]/div[1]/app-input/div/div/div[1]/label")).getText();
+
+    }
+    //CVC
+    public String getCVCText() {
+        return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[2]/div[3]/app-input/div/div/div[1]/label")).getText();
+
+    }
+
+    //имя держателя
+    public String getNameHolderText() {
+        return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[3]/app-input/div/div/div[1]/label")).getText();
+
+    }
+    //текст на кнопке
+    public String getButtonText() {
+        return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/button/text()")).getText();
+
+    }
 
     //переключение на фрейм
     public void getFrame() {
-        driver.switchTo().frame("bepaid-iframe");
+        driver.switchTo().frame(1);
     }
 
     public void switchToBepaidIframe() {
         WebElement iframe = driver.findElement(By.className("bepaid-iframe"));
         driver.switchTo().frame(iframe);
+    }
+
+    public void switchToDefaultContent() {
+        driver.switchTo().defaultContent();
     }
 }

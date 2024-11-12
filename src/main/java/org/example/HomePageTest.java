@@ -105,8 +105,17 @@ public class HomePageTest {
         homePage.enterPhoneNumber("297777777");
         homePage.enterAmount("297");
         homePage.clickAcceptButton();
-        homePage.switchToBepaidIframe();
-        Assertions.assertEquals("Номер карты", homePage.getHeaderText());
+        homePage.getFrame();
+        Assertions.assertEquals("297.00 BYN", homePage.getHeaderText());
+        Assertions.assertEquals("Номер карты", homePage.getHeaderCardText());
+        Assertions.assertEquals("Срок действия", homePage.getValidityPeriodText());
+        Assertions.assertEquals("CVC", homePage.getCVCText());
+        Assertions.assertEquals("Имя держателя (как на карте)", homePage.getNameHolderText());
+        Assertions.assertEquals(" Оплатить  297.00 BYN ", homePage.getButtonText());
+
+        
+        homePage.switchToDefaultContent();
+
         
     }
 
