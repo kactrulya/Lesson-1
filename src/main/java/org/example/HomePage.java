@@ -117,6 +117,7 @@ public class HomePage {
 
     //номер карты
     public String getHeaderCardText() {
+
         return driver.findElement(By.xpath("/html/body/app-root/div/div/div/app-payment-container/section/div/app-card-page/div/div[1]/app-card-input/form/div[1]/div[1]/app-input/div/div/div[1]/label")).getText();
 
     }
