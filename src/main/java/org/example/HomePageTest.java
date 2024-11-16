@@ -5,12 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class HomePageTest {
 
     WebDriver driver;
     HomePage homePage;
-
+    public WebDriverWait wait;
 
 
     @BeforeEach
@@ -105,7 +110,7 @@ public class HomePageTest {
         homePage.enterPhoneNumber("297777777");
         homePage.enterAmount("297");
         homePage.clickAcceptButton();
-        homePage.getFrame();
+        homePage.switchToBepaidIframe();
         Assertions.assertEquals("297.00 BYN", homePage.getHeaderText());
         Assertions.assertEquals("Номер карты", homePage.getHeaderCardText());
         Assertions.assertEquals("Срок действия", homePage.getValidityPeriodText());
@@ -118,6 +123,7 @@ public class HomePageTest {
 
         
     }
+
 
    @AfterEach
     public void closeDriver() {

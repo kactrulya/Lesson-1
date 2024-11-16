@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
     WebDriver driver;
@@ -142,12 +145,22 @@ public class HomePage {
 
     //переключение на фрейм
     public void getFrame() {
-        driver.switchTo().frame(1);
+        driver.switchTo().frame("iframe.bepaid-iframe");
+
     }
+    public By bepaidIframe = By.xpath("/html/body/div[8]/div/iframe");
 
     public void switchToBepaidIframe() {
-        WebElement iframe = driver.findElement(By.className("bepaid-iframe"));
-        driver.switchTo().frame(iframe);
+        driver.switchTo().parentFrame();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Настройка ожидания
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.className(".bepaid-iframe")));
+
+
+    }
+
+    public WebElement waitAndGetElement(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public void switchToDefaultContent() {
